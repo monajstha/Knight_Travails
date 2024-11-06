@@ -1,5 +1,5 @@
 function shortestKnightMove(start, end) {
-  // possible positions of a Knight
+  // possible moves of a Knight
   const possiblePositions = [
     [2, 1],
     [2, -1],
@@ -28,7 +28,9 @@ function shortestKnightMove(start, end) {
     for (const position of possiblePositions) {
       // Check if the currentPosition position is the end position
       if (currentPosition[0] === end[0] && currentPosition[1] === end[1]) {
-        return path.concat([currentPosition]);
+        const finalPath = path.concat([currentPosition]);
+
+        return { finalPath, moves };
       }
 
       const newPosition = [
@@ -61,3 +63,12 @@ function isValidPosition(position) {
 
   return true;
 }
+
+const start = [0, 0];
+const end = [3, 3];
+
+const { moves, finalPath } = shortestKnightMove(start, end);
+console.log(`You made it in ${moves} moves! Here's your final path: `);
+finalPath.forEach((item) => {
+  console.log(item);
+});
